@@ -55,11 +55,7 @@ namespace KMS1_06_LE_05_03
                 // here I want call method for statistic where I sent my temporary list
             }
             // Call Statistic method with the file path
-            if (!string.IsNullOrWhiteSpace(openFileDialog.FileName))
-            {
-                Statistic(openFileDialog.FileName);
-            }
-           
+            Statistic(openFileDialog.FileName);
             return openFileDialog.FileName;// Rückgabe des Dateipfads der geöffneten Datei
         }
 
@@ -114,6 +110,7 @@ namespace KMS1_06_LE_05_03
         /// <param name="filePath">Pfad zur Textdatei.</param>
         private void Statistic(string filePath)
         {
+            if (string.IsNullOrWhiteSpace(filePath)) { return; }
             Dictionary<string, int> wordCounts = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);          
             using (StreamReader reader = new StreamReader(filePath))// Laden des Textes aus der Datei zeilenweise
             {
